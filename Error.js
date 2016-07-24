@@ -5,7 +5,7 @@ var query = new Parse.Query(Note);
 query.get("aBcDeFgH", {
   success: function(results) {
     // This function will *not* be called.
-    console.log("Everything went fine!");
+    console.log("Everything went fine! -->");
   },
   error: function(model, error) {
     // This will be called.
