@@ -2,7 +2,8 @@ import path from 'path';
 import express from 'express';
 import Parse from 'parse/node';
 import {
-  ParseServer
+  ParseServer,
+  S3Adapter
 }
 from 'parse-server';
 import parseDashboard from 'parse-dashboard';
@@ -34,7 +35,13 @@ server.use(
     appId: APP_ID,
     masterKey: MASTER_KEY,
     fileKey: 'f33fc1a9-9ba9-4589-95ca-9976c0d52cd5',
-    serverURL: `http://${SERVER_HOST}:${SERVER_PORT}/parse`
+    serverURL: `http://${SERVER_HOST}:${SERVER_PORT}/parse`,
+    filesAdapter: new S3Adapter(
+      config.S3_ACCESS_KEY,
+      config.S3_SECRET_KEY,
+      config.S3_BUCKET,
+      {directAccess: true}
+    )
   })
 );
 
@@ -66,7 +73,8 @@ server.listen(SERVER_PORT, () => console.log(
 ));
 
 // require('./Queries');
-require('./Users');
+// require('./Users');
 // require('./Roles');
 // require('./Relations');
-require('./Error');
+// require('./Error');
+require('./Files');
