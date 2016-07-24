@@ -69,3 +69,4 @@ server.listen(SERVER_PORT, () => console.log(
 require('./Users');
 // require('./Roles');
 // require('./Relations');
+require('./Error');
